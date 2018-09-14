@@ -84,7 +84,7 @@ angular.module('chat').service('ChatCore',
                 self.rooms[setup.to] = self.rltm.join(setup.to);   
             }
 
-            return self.rooms[setup.to].publish({
+            return self.rooms[setup.to].message({
                 data: setup.message,
                 user: user
             });
