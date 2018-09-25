@@ -18,7 +18,7 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
         ChatCore.publish({
             to: message.to || 'global',
             message: message.data,   
-            user: ChatCore.user()
+            user: message.from || ChatCore.user()
         });
 
     };
@@ -91,7 +91,7 @@ angular.module('chat').service('ChatCore',
 
         } else {
 
-            return self.roomGlobal.publish({
+            return self.roomGlobal.message({
                 data: setup.message,
                 user: user
             });
