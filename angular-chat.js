@@ -49,7 +49,7 @@ angular.module('chat').service('ChatCore',
 
     var self = this;
 
-    self.rltm = rltm(config.rltm);
+    self.urltm = urltm(config.urltm);
     
     // the global room everyone is in
     self.roomGlobal;
@@ -81,7 +81,7 @@ angular.module('chat').service('ChatCore',
         if(setup.to) {
 
             if(!self.rooms[setup.to]) {
-                self.rooms[setup.to] = self.rltm.join(setup.to);   
+                self.rooms[setup.to] = self.urltm.join(setup.to);   
             }
 
             return self.rooms[setup.to].message({
@@ -103,8 +103,8 @@ angular.module('chat').service('ChatCore',
     // Subscribe to new messages
     self.subscribe = function(fn) {
 
-        self.roomGlobal = self.rltm.join('global');
-        self.roomPrivate = self.rltm.join(self.user().id);
+        self.roomGlobal = self.urltm.join('global');
+        self.roomPrivate = self.urltm.join(self.user().id);
 
         self.roomGlobal.on('message', function(uuid, data) {
             fn(data, false);  
